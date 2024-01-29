@@ -8,7 +8,7 @@ const { userValidatResult, validate, PostValidatResult, UpdateuserValidatResult}
 const storage = require('../middlewares/upload')
 
 // craete and join in the app
-router.post('/register', storage.single('img'), userValidatResult(),validate, userController.register);
+router.post('/register', storage.single('avatar'), userValidatResult() ,validate, userController.register);
 
 // login in if  user have  account
 router.post('/login', userController.login);

@@ -18,7 +18,7 @@ exports.register = async (req ,res)=>{
         const regUser = await models.User.create({
             name,
             email,
-            avatar:  httpHost  + '/public/images/' + req.file.filename,
+            avatar: req.file ?  httpHost  + '/public/images/' + req.file.filename : null,
             password: hashPassword
         });
         res.status(200).json({message:'Create Email Secssesfully'});
