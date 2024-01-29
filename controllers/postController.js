@@ -20,36 +20,39 @@ exports.newPost = async (req, res) => {
     }
 };
 
-exports.newPostImg  = async (req, res)=> {
-    
-    const {img} = req.body
-    const _id = req.currentUser;
-    try {
-        const postImg = await models.Post.create({
-           
-            author: _id,
-        });
-        fs.readdirSync(postImg)
-        res.status(200).json({ message: "add-seecssfuly" })
-    } catch (e) {
-        res.status(404).json({message: "Imgae Error" })
-    }
- }
-
 exports.updateMyPost = async (req, res) => {
-    const { img, title, discraption,like } = req.body;
+    const httpHost = req.protocol + "://" + req.get('host');
+    const {title, discraption} = req.body;
     const _id = req.params.postId;
     try {
         await models.Post.updateOne(
             { _id },
-            { img, title, discraption, like}
+            {
+            img: httpHost + '/public/images/' + req.file.filename, 
+            title, 
+            discraption}
         );
         res.status(200).json({ message: 'updated' })
     } catch (e) {
         res.status(500).json(e)
     }
 };
-
+exports.deleteMyPostg = async (req, res)=> {
+    const _id = req.params.postId
+    const author = req.currentUser
+    try {
+        const findPoist = await models.Post.findOne({_id})
+        if(findPoist){
+        const deleteMypost = await models.Post.deleteOne({_id})
+        const deleteLike = await models.Like.deleteOne({author})
+        res.status(200).json({message: 'delete it seecces'})
+    }else{
+        res.status(200).json({message: 'Post is not exsest'})
+    }
+    } catch (e) {
+        res.status(500).json(e)
+    }
+}
 exports.getAllPost = async (req, res) => {
     try {
         const user = await models.Post.find().populate({ path: 'author', select: 'name avatar'})

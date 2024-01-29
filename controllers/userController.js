@@ -3,19 +3,22 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken')
 require('dotenv').config();
 
+// all controllers for User CRUD
 
 exports.register = async (req ,res)=>{
-
-    const takeProto =  req.protocol + "://" + req.get('host')
+    // take localhost
+    const httpHost =  req.protocol + "://" + req.get('host')
+    // take form requst body what i wnat
     const {name, email, password } = req.body;
 
     //hasing password saving in database
     const hashPassword = await bcrypt.hash(password, 10);
     try {
+        // go in database and create user with avater
         const regUser = await models.User.create({
             name,
             email,
-            avatar:  takeProto  + '/public/images/' + req.file.filename,
+            avatar:  httpHost  + '/public/images/' + req.file.filename,
             password: hashPassword
         });
         res.status(200).json({message:'Create Email Secssesfully'});
@@ -26,6 +29,7 @@ exports.register = async (req ,res)=>{
 };
 
 exports.login = async (req, res) => {
+     // take form requst body what i wnat
     const { email, password } = req.body;
     try {
         const user = await models.User.findOne({email});
@@ -48,11 +52,19 @@ exports.login = async (req, res) => {
 
 
 exports.updatePorfile = async (req, res) => {
+     // take form requst body what i wnat
     const { name, password } = req.body;
+    // see if the user loged in useing meddilwhere jwt and named currentUser to use it anywhere
     const _id = req.currentUser
     try {   
+            // make random hash for password for meore secorty 
             const hashPassword = await bcrypt.hash(password, 10);
-            const userUpdate = await models.User.updateOne({_id},{ name, password: hashPassword })
+            // take the name and update it 
+            const userUpdate = await models.User.updateOne({_id},{ 
+                name,
+                password: hashPassword,
+            })
+            // if is loged in true make update 
             if(userUpdate){
                 res.status(200).json({message: 'You Update your profile'});
             }else{
@@ -62,12 +74,28 @@ exports.updatePorfile = async (req, res) => {
         res.status(500).json(e);
     }
 };
-
+exports.updatauserAvatar = async (req, res) => {
+    //take host 
+    const httpHost = req.protocol + "://" + req.get('host');
+    // take curent user
+    const _id = req.currentUser
+    try {   
+        const upavatar = await models.User.updateOne({_id},{
+            //named  the file 
+            avatar: httpHost + '/public/images/' + req.file.filename,
+        })
+        res.status(200).json({message: 'update avater secsefuly'})
+    } catch (e) {
+        res.status(500).json({message: 'You shuild loged in'})
+    }
+}
 exports.getUserPost = async (req, res) => {
+    //take auhter use jwt you shuld tkae the same name in Post schema 
     const author = req.currentUser
     try {
+        // find if user in data base or not 
         const user = await models.Post.find({author}).populate({ path: 'author', select: 'name avatar'})
-        console.log(author)
+        // if not logied in or there are not post
         if (!user) {
             return res.status(404).json({ error: 'User not found' });
         }

@@ -1,5 +1,5 @@
 const {validationResult, body } = require('express-validator');
-
+// make all what ahuld be not empty  in register
 const userValidatResult = ()=>{
     return [
         body('name').notEmpty().withMessage('حقل الاسم مطلوب'),
@@ -8,7 +8,15 @@ const userValidatResult = ()=>{
         body('password').isLength({min: 5}).withMessage('حقل كلمه المرور اقل من من 5 خانات'),
     ]
 };
-
+// validate when user update profile name and password 
+const UpdateuserValidatResult = ()=>{
+    return [
+        body('name').notEmpty().withMessage('حقل الاسم مطلوب'),
+        body('password').notEmpty().withMessage('حقل كلمه المرور مطلوب'),
+        body('password').isLength({min: 5}).withMessage('حقل كلمه المرور اقل من من 5 خانات'),
+    ]
+};
+// make all what ahuld be not empty  in post
 const PostValidatResult = ()=>{
     return [
         body('title').notEmpty().withMessage('حقل  مطلوب'),
@@ -26,5 +34,6 @@ const validate = (req, res, next) => {
 module.exports = {
     userValidatResult,
     validate,
-    PostValidatResult
+    PostValidatResult,
+    UpdateuserValidatResult
 }
