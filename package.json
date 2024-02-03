@@ -17,7 +17,7 @@
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "node app.js"
+    "build": "nodemon start"
   },
   "author": "Bandar Abuseada",
   "license": "ISC",
