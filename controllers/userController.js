@@ -99,7 +99,7 @@ exports.getUserPost = async (req, res) => {
         if (!user) {
             return res.status(404).json({ error: 'User not found' });
         }
-        res.status(200).json({date: user});
+        res.status(200).json({data: user});
     } catch (e) {
         console.error(e);
         res.status(500).json({ error: 'Internal Server Error' });

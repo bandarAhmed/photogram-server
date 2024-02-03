@@ -26,6 +26,9 @@ router.get('/get-my-post',isLogedIn, userController.getUserPost);
 // update post and profile
 router.put('/post/:postId/update', isLogedIn, storage.single('upimg'), postController.updateMyPost);
 
+// get post and profile
+router.get('/post/:postId/get-post', postController.getOnePost);
+
 // update user name and password
 router.put('/account/update', isLogedIn, UpdateuserValidatResult(), validate, userController.updatePorfile);
 
@@ -34,8 +37,10 @@ router.put('/account/update/avatar', isLogedIn, storage.single('upavatr'), userC
 
 // delete post
 router.delete('/post/:postId/delete', isLogedIn, postController.deleteMyPostg);
+router.get('/post/findId', isLogedIn, postController.findUserId);
 
 // make like to the post and delete it
 router.post('/post/:postId/like', isLogedIn, likeController.UserLike);
+router.get('/post/:postId/cointlike', likeController.countlikes);
 
 module.exports = router;

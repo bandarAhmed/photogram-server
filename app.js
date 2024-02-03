@@ -3,13 +3,15 @@ const morgan = require('morgan');
 const cors = require('cors');
 require('dotenv').config();
 const db = require('./config/db');
+// const bodyParser = require('body-parser')
 const router = require('./router/router');
 const path = require('path');
 
 // connecet on express server and make him spurt Json
 const app = express();
+
 // to can use res as json
-app.use(express.json());
+app.use(express.json({limit: '10mb'}));
 
 // see if data are safe to go in database or thre are dangers useing core modules
 app.use(cors());
