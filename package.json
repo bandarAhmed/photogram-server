@@ -23,6 +23,9 @@
   "engines": {
     "node": "18.14.2"
   },
+  "bin" : {
+    "execute" : "app.js"
+},
   "author": "Bandar Abuseada",
   "license": "ISC",
   "description": "this server for Photogram"
