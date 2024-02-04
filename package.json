@@ -16,8 +16,7 @@
   "version": "1.0.0",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "node app.js"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Bandar Abuseada",
   "license": "ISC",
