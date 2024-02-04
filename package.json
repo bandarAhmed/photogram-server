@@ -9,22 +9,24 @@
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^6.1.0",
     "morgan": "^1.10.0",
-    "multer": "^1.4.5-lts.1",
-    "nodemon": "^3.0.3"
+    "multer": "^1.4.5-lts.1"
   },
   "name": "backend",
   "version": "1.0.0",
   "main": "app.js",
   "scripts": {
     "start": "npm-run-all --parallel \"chmod +x /opt/render/project/src/node_modules/.bin/nodemon\" \"nodemon start\""
-},
+  },
   "engines": {
     "node": "18.14.2"
   },
-  "bin" : {
-    "execute" : "app.js"
-},
+  "bin": {
+    "execute": "app.js"
+  },
   "author": "Bandar Abuseada",
   "license": "ISC",
-  "description": "this server for Photogram"
+  "description": "this server for Photogram",
+  "devDependencies": {
+    "nodemon": "^3.0.3"
+  }
 }
