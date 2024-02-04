@@ -20,7 +20,7 @@
     "build": "node app.js"
   },
   "engines": {
-    "node": ">=18.0.0 <19.0.0"
+    "node": "v18.14.2"
   },
   "author": "Bandar Abuseada",
   "license": "ISC",
