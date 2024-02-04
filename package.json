@@ -19,6 +19,9 @@
     "test": "node app.js",
     "start": "nodemon start"
   },
+  "engines": {
+    "node": "18.14.2"
+  },
   "author": "Bandar Abuseada",
   "license": "ISC",
   "description": "this server for Photogram"
