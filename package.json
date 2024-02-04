@@ -19,9 +19,6 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "node app.js"
   },
-  "engines": {
-    "node": "v18.14.2"
-  },
   "author": "Bandar Abuseada",
   "license": "ISC",
   "description": "this server for Photogram"
