@@ -6,8 +6,7 @@ require('dotenv').config();
 async function db() {
     mongoose.set({strictQuery: false})
     try {
-        await mongoose.connect(process.env.DB_URL);
-        console.log('Connected on mongoose database')
+        await mongoose.connect(process.env.DB_URL).then(console.log('Connected on mongoose database'))
     } catch (e) {
         console.log(e)
     }
