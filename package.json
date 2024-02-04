@@ -17,7 +17,8 @@
   "main": "app.js",
   "scripts": {
     "test": "node app.js",
-    "start": "nodemon start"
+    "start": "nodemon start",
+    "dev": "nodemon ./bin/www"
   },
   "engines": {
     "node": "18.14.2"
