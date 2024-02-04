@@ -16,7 +16,8 @@
   "version": "1.0.0",
   "main": "app.js",
   "scripts": {
-    "test": "node app.js"
+    "test": "node app.js",
+    "start": "nodemon start"
   },
   "author": "Bandar Abuseada",
   "license": "ISC",
