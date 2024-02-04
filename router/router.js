@@ -23,6 +23,8 @@ router.get('/get-all-post', postController.getAllPost);
 // get all user post
 router.get('/get-my-post',isLogedIn, userController.getUserPost);
 
+router.get('/getUserId', isLogedIn, userController.getUserId);
+
 // update post and profile
 router.put('/post/:postId/update', isLogedIn, storage.single('upimg'), postController.updateMyPost);
 

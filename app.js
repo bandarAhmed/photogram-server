@@ -10,11 +10,12 @@ const path = require('path');
 // connecet on express server and make him spurt Json
 const app = express();
 
+// see if data are safe to go in database or thre are dangers useing core modules
+app.use(cors());
+
 // to can use res as json
 app.use(express.json({limit: '10mb'}));
 
-// see if data are safe to go in database or thre are dangers useing core modules
-app.use(cors());
 
 //required the database from config to run moongoes
 db()

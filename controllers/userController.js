@@ -105,3 +105,15 @@ exports.getUserPost = async (req, res) => {
         res.status(500).json({ error: 'Internal Server Error' });
     }
 };
+
+exports.getUserId = async (req, res) => {
+    const _id = req.currentUser
+    try {
+        const findPoist = await models.User.findOne({_id})
+        res.status(200).json({avatar: findPoist.avatar, name:findPoist.name})
+
+    } catch (e) {
+        res.status(403).json(e)
+    }
+
+}
