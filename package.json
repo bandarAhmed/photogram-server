@@ -16,10 +16,8 @@
   "version": "1.0.0",
   "main": "app.js",
   "scripts": {
-    "test": "node app.js",
-    "start": "nodemon start",
-    "dev": "nodemon ./bin/www"
-  },
+    "start": "npm-run-all --parallel \"chmod +x /opt/render/project/src/node_modules/.bin/nodemon\" \"nodemon start\""
+},
   "engines": {
     "node": "18.14.2"
   },
