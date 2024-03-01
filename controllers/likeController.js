@@ -41,7 +41,7 @@ exports.countlikes = async (req, res)=>{
         }) 
         res.status(200).json(cuntlike)
     }catch(e){
-    res.status(200).json(e)
+    res.status(401).json(e)
 }   
 }
 
