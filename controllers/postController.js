@@ -16,25 +16,23 @@ exports.newPost = async (req, res) => {
             });
         res.status(200).json({ message: 'post add seecss' })
     } catch (e) {
-        res.status(500).json({message: 'You Shuold Add Image'})
+        res.status(401).json({message: 'You Shuold Add Image'})
     }
 };
 
 exports.updateMyPost = async (req, res) => {
-    const httpHost = req.protocol + "://" + req.get('host');
     const {title, discraption} = req.body;
     const _id = req.params.postId;
     try {
         await models.Post.updateOne(
             { _id },
             {
-            img: httpHost + '/public/images/' + req.file.filename, 
             title, 
             discraption}
         );
         res.status(200).json({ message: 'updated' })
     } catch (e) {
-        res.status(500).json(e)
+        res.status(401).json(e)
     }
 };
 exports.deleteMyPostg = async (req, res)=> {
@@ -50,7 +48,7 @@ exports.deleteMyPostg = async (req, res)=> {
         res.status(400).json({message: 'Post is not exsest'})
     }
     } catch (e) {
-        res.status(500).json(e)
+        res.status(401).json(e)
     }
 }
 exports.findUserId = async (req, res) => {
@@ -59,7 +57,7 @@ exports.findUserId = async (req, res) => {
         res.status(200).json(findPoist)
 
     } catch (e) {
-        res.status(200).json(e)
+        res.status(401).json(e.message)
     }
 
 }
@@ -79,7 +77,7 @@ exports.getOnePost = async (req, res) => {
          const getPost = await models.Post.findById({_id}).populate({ path: 'author', select: 'name avatar'})
         res.status(200).json({data:  getPost})
     } catch (e) {
-        res.status(200).json(e)
+        res.status(401).json(e)
     }
 }
 

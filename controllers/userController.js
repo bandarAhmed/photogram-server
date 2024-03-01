@@ -22,8 +22,7 @@ exports.register = async (req ,res)=>{
             password: hashPassword
         });
         res.status(200).json({message:'Create Email Secssesfully'});
-    } catch (e) {   
-        console.error(e);
+    } catch (e) {
         res.status(401).json({message: "something rong habend"})
     }
 };
@@ -45,7 +44,6 @@ exports.login = async (req, res) => {
         };
 
     }catch (error) {
-        console.error(error);
         res.status(500).json({ message: "Error during login", error: error.message });
     }
 };
@@ -68,7 +66,7 @@ exports.updatePorfile = async (req, res) => {
             if(userUpdate){
                 res.status(200).json({message: 'You Update your profile'});
             }else{
-                res.status(404).json({message: "Cant update"})
+                res.status(401).json({message: "Can't update"})
             }
     } catch (e) {
         res.status(500).json(e);
@@ -86,7 +84,7 @@ exports.updatauserAvatar = async (req, res) => {
         })
         res.status(200).json({message: 'update avater secsefuly'})
     } catch (e) {
-        res.status(500).json({message: 'You shuild loged in'})
+        res.status(401).json({message: 'You shuild loged in'})
     }
 }
 exports.getUserPost = async (req, res) => {
@@ -101,8 +99,7 @@ exports.getUserPost = async (req, res) => {
         }
         res.status(200).json({data: user});
     } catch (e) {
-        console.error(e);
-        res.status(500).json({ error: 'Internal Server Error' });
+        res.status(401).json({ error: 'Internal Server Error' });
     }
 };
 
@@ -111,9 +108,7 @@ exports.getUserId = async (req, res) => {
     try {
         const findPoist = await models.User.findOne({_id})
         res.status(200).json({avatar: findPoist.avatar, name:findPoist.name})
-
     } catch (e) {
-        res.status(403).json(e)
+        res.status(401).json(e)
     }
-
 }

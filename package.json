@@ -18,15 +18,12 @@
     "start": "npm-run-all --parallel \"chmod +x /opt/render/project/src/node_modules/.bin/nodemon\" \"nodemon start\""
   },
   "engines": {
-    "node": "18.14.2"
+    "node": "18.17.0"
   },
   "bin": {
     "execute": "app.js"
   },
   "author": "Bandar Abuseada",
   "license": "ISC",
-  "description": "this server for Photogram",
-  "devDependencies": {
-    "nodemon": "^3.0.3"
-  }
+  "description": "this server for Photogram"
 }
